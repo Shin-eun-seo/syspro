@@ -6,4 +6,3 @@ void copy(char from[], char to[]) {
 	while((to[i] = from[i]) != '\0')
 		++i;
 }
-
