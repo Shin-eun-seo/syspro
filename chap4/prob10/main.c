@@ -7,15 +7,17 @@
 void printFile(FILE *fp, int printLineNumber) {
     int c;
     int lineNumber = 1;
+    int isFirstCharOnLine = 1;
 
     while ((c = getc(fp)) != EOF) {
-        if (printLineNumber) {
+        if (isFirstCharOnLine && printLineNumber) {
             printf("%6d  ", lineNumber++);
+            isFirstCharOnLine = 0;
         }
         putc(c, stdout);
 
         if (c == '\n') {
-            lineNumber = 1;
+            isFirstCharOnLine = 1;
         }
     }
 }
@@ -53,4 +55,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
