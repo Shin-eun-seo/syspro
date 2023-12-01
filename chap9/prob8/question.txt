@@ -1,0 +1,17 @@
+1. (echo START1; sleep 10; echo DONE1) &
+-> After outputting START1, wait for 10 secodes and run the task of outputting
+   "DONE1" in the background.
+
+2. (echo START2; sleep 10; echo DONE2) &
+-> After outputting "START2", wait for 10 seconds and run the task of outputting
+   "DONE2" in another background.
+
+3. kill -KILL first Process
+-> Force the first process to exit.
+
+4. kill -STOP first Process
+-> Temporarily stop the first process.
+
+5. kill -CONT first Process
+-> If you stop the first process and run this command, the process runs again.
+

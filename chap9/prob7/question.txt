@@ -1,0 +1,31 @@
+1. sleep 100 &
+OUTPUT : [1] 19502
+-> The sleep 100 & command is a command that waits 100 seconds in the background
+
+2. sleep 100 &
+OUTPUT : [2] 19503
+-> The sleep 100 & command is a command that waits 100 seconds in the background
+
+3. jobs
+OUTPUT : [1]- Running  sleep 100 &
+         [2]+ Running  sleep 100 &
+-> The jobs command shows the list of tasks currently running on the shell
+  [1] and [2] indicate the job number, and Running indicates that the job is running
+ 
+4. ps -f 
+OUTPUT : UID        PID  PPID  C STIME TTY          TIME CMD
+         dcuuser  19476     0  0 06:17 pts/12   00:00:00 /bin/bash -l
+         dcuuser  19502 19476  0 06:18 pts/12   00:00:00 sleep 100
+         dcuuser  19503 19476  0 06:18 pts/12   00:00:00 sleep 100
+         dcuuser  19505 19476  0 06:18 pts/12   00:00:00 ps -f
+-> Displays detailed process status.
+
+5. kill %1
+-> The kill %1 command ended the first operation
+
+6. ps -f
+OUTPUT : UID        PID  PPID  C STIME TTY          TIME CMD
+         dcuuser  19476     0  0 06:17 pts/12   00:00:00 /bin/bash -l
+         dcuuser  19503 19476  0 06:18 pts/12   00:00:00 sleep 100
+         dcuuser  19508 19476  0 06:19 pts/12   00:00:00 ps -f
+-> If you run ps -f again to check the status of the process, you can see that the PID has disappeared after the first operation has finished.
