@@ -8,7 +8,7 @@
 
 #define MAX_INPUT_SIZE 1024
 
-void execute_command(char *cmd, int background) {
+void run_command(char *cmd, int background) {
     char *token;
     char *args[MAX_INPUT_SIZE];
     int i = 0;
@@ -39,7 +39,7 @@ int main() {
     char input[MAX_INPUT_SIZE];
 
     while (1) {
-        printf("[shell] ");
+        printf("[my_shell] ");
         fgets(input, sizeof(input), stdin);
         input[strcspn(input, "\n")] = '\0';
         
@@ -49,7 +49,7 @@ int main() {
             input[strlen(input) - 1] = '\0';
         }
 
-        execute_command(input, background);
+        run_command(input, background);
     }
 
     return 0;
