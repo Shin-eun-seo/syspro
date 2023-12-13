@@ -6,10 +6,34 @@ struct node {
     struct node *next;
 };
 
+void push(struct node **top, int data);
+int pop(struct node **top);
+void printStack(struct node *top);
+
+int main() {
+    int data;
+    struct node *top = NULL;
+
+    while (1) {
+        if (scanf("%d", &data) == 1) {
+            push(&top, data);
+        } else {
+            if (feof(stdin) || ferror(stdin)) {
+                break;
+            } else {
+                printStack(top);
+                break;
+            }
+        }
+    }
+
+    return 0;
+}
+
 void push(struct node **top, int data) {
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
-    if (!newNode) {
-        fprintf(stderr, "Memory allocation error\n");
+    if (newNode == NULL) {
+        perror("malloc");
         exit(EXIT_FAILURE);
     }
 
@@ -20,44 +44,28 @@ void push(struct node **top, int data) {
 
 int pop(struct node **top) {
     if (*top == NULL) {
-        fprintf(stderr, "The stack is empty.\n");
+        printf("Stack is empty.\n");
         exit(EXIT_FAILURE);
     }
 
     struct node *temp = *top;
-    int data = temp->data;
+    int poppedValue = temp->data;
     *top = temp->next;
     free(temp);
 
-    return data;
+    return poppedValue;
 }
 
 void printStack(struct node *top) {
+    if (top == NULL) {
+        printf("Stack is empty.\n");
+        return;
+    }
+
     printf("Print stack\n");
     while (top != NULL) {
         printf("%d\n", top->data);
         top = top->next;
     }
-}
-
-int main() {
-    struct node *top = NULL;
-
-    push(&top, 55);
-    push(&top, 606);
-    push(&top, 808);
-    push(&top, 818);
-    push(&top, 2);
-
-    printf("Command : ./pp\n");
-    printf("%d\n", pop(&top));
-    printf("%d\n", pop(&top));
-    printf("%d\n", pop(&top));
-    printf("%d\n", pop(&top));
-
-    printf("%f\n", 2.3);
-    printStack(top);
-
-    return 0;
 }
 
